@@ -27,6 +27,7 @@ html, body {
     justify-content: center;
     width:100%;
     padding: 10px 15px 0 10px;
+    flex-wrap: wrap;
 }
 img {
     flex-grow: 1;
@@ -35,6 +36,7 @@ img {
 }
 .img_div {
     margin-left:5px;
+    margin-top: 5px;
     flex-grow: 1;
     flex-shrink: 1;
     display: inline-flex;

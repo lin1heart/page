@@ -5,42 +5,65 @@ $(function(){
 //}else{
 //    alert(da);
 //}
-	var da = [];
-    height_i = image_val(da);
     show();
 });
-var height_i;
 var app =  new Vue({
     el: '#app'
 });
+var con = new Vue({
+    e1: '#conntion'
+})
 
-var img_url = ["../img/1.jpg","../img/3_4.png","../img/6.jpg","../img/7.jpg"];
+var img_url = ["../img/1.jpg","../img/3_4.png","../img/6.jpg","../img/7.jpg","../img/3_4.png","../img/1.jpg","../img/6.jpg","../img/7.jpg","../img/6.jpg","../img/1.jpg"];
 function show() {
     var check = document.getElementById('dbox');
     if(check){
         check.parentNode.removeChild(check);
     }else{
+        var da = [];
+        var firstHeight = image_val(da,1);
         var dir = document.getElementById('conntion');
         var dbox = document.createElement('div');//第一行的div
         dbox.className = "box";
         dbox.id = "dbox";
-        for(var x = 0;x<4; x++){
+        for(var x = 1;x<8; x++){
+            if(x==5){
+                // var br = document.createElement("br");
+                // dbox.appendChild(br);
+                firstHeight = image_val(da,2);
+            }
             var dr = document.createElement('div');
             dr.className = "img_div";
-            dr.style.height = height_i+'px';
-            dr.id = "dr" + x;
+            dr.style.height = firstHeight+'px';
             var img = document.createElement('img');
-            img.src = img_url[x];
+            img.src = img_url[x-1];
+            img.id = "img" + x;
             dr.appendChild(img);
             dbox.appendChild(dr);
         }
         dir.append(dbox);
+        // var da = [];
+        // var doubleHeight = image_val(da,2);
+        // var dbox2 = document.createElement('div');//第一行的div
+        // dbox2.className = "box";
+        // dbox2.id = "dbox2";
+        // for(var x = 5;x<8; x++){
+        //     var dr = document.createElement('div');
+        //     dr.className = "img_div";
+        //     dr.style.height = doubleHeight+'px';
+        //     var img = document.createElement('img');
+        //     img.src = img_url[x];
+        //     img.id = "img" + x;
+        //     dr.appendChild(img);
+        //     dbox2.appendChild(dr);
+        // }
+        // dir.append(dbox2);
     }
 }
-var img_pro = [];
+var img_pro = [1366/768,162/270,1366/768,1366/768,162/270,1366/768,1366/768,1366/768,1366/768,1366/768,1366/768];
 var i = 0;
 //图片校验
-function image_val(da) {
+function image_val(da,flag) {
 		var url = "http://ws.changxing.sh.cn:10180/ws/file/download/5a17ebc09536030bd409193c";
 		for(var j = 0; j<da.length ; j++){
             var image = new Image();  
@@ -50,18 +73,43 @@ function image_val(da) {
                 i++;
             }
         }
-        img_pro = [1366/768,162/270,1366/768,1366/768];
+        
         var wid = 0;
-        var body_width =  document.body.clientWidth - 40;
-        for(var a = 0; a< img_pro.length; a++){
-            wid += img_pro[a];
-        }
-        var heig = body_width/wid;
-        return heig; 
+        if(flag ==1){
+            var body_width =  document.body.clientWidth - 85;
+            for(var a = 0; a< 4; a++){
+                wid += img_pro[a];
+            }
+            var heig = body_width/wid;
+            return heig; 
+        }else if(flag ==2){
+            var body_width =  document.body.clientWidth - 80;
+            for(var a = 4; a< 7; a++){
+                wid += img_pro[a];
+            }
+            var heig = body_width/wid;
+            return heig; 
+        }       
 }
+
 // 页面改变 重新绘制
 window.onresize = function(){
     var da = [];
     height_i = image_val(da);
     show();
 }
+
+// window.onload = function(){
+//     var oUl = document.getElementById("ul1");
+//     var aLi = oUl.getElementsByTagName('li');
+//     for(var i=0;i<aLi.length;i++){
+//         aLi[i].onclick = function(){
+//             alert(123);
+//         }
+//     }
+// }
+var nub;
+$(document).click(function (e) { 
+    var v_id = $(e.target).attr('id');
+    nub = v_id.replace(/[^0-9]/ig,"");
+});
