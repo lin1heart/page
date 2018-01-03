@@ -2,20 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>iview example</title>
+    <title>list</title>
     <link rel="stylesheet" type="text/css" href="../css/iview.css">
     <link rel="stylesheet" type="text/css" href="../css/total.css">
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../js/vue.min.js"></script>
     <script type="text/javascript" src="../js/iview.min.js"></script>
+    <script type="text/javascript" src="../js/masonry-docs.min.js" ></script>
 </head>
 <body>
-    <div id="conntion">        
-        <i-affix :offset-top="50">
-            <div border style="width:100%;height:50px;background-color:red"></div>
-        </i-affix>       
+	<div id="affix">
+		<Affix>
+            <div class="affix">
+            	<span style="font-weight: bold;color: #464c5b; font-size: 26px;float: left;margin-top: 23px;margin-left: 10px;">666</span>
+            	<i-button type="primary" shape="circle" class="login_button">注册</i-button>
+                <i-button type="ghost" shape="circle" class="login_button">登录</i-button>
+            </div>
+        </Affix>
+	</div>
+    <div id="conntion">    
         <div id="app" class="put_top">
-            <i-menu mode="horizontal" active-name="1">
+            <i-menu mode="horizontal" active-name="1" @on-select="menuSelect">
                 <Menu-Item name="1">
                     内容管理
                 </Menu-Item>
@@ -29,6 +36,22 @@
                     综合设置
                 </Menu-Item>
             </i-menu>
+        </div>
+        <div id="listContent">
+        	<Carousel v-model="value1" arrow='never' dots='none'>
+		        <Carousel-item>
+		            <div id="tab1"></div>
+		        </Carousel-item>
+		        <Carousel-item>
+		            <div>222222</div>
+		        </Carousel-item>
+		        <Carousel-item>
+		            <div>333333</div>
+		        </Carousel-item>
+		        <Carousel-item>
+		            <div>444444</div>
+		        </Carousel-item>
+		    </Carousel>
         </div>
     </div>
 </body>

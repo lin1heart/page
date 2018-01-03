@@ -8,10 +8,21 @@ $(function(){
     show();
 });
 var app =  new Vue({
-    el: '#app'
+    el: '#app',
+    methods: {
+    	menuSelect: function(val){
+    		listContent.$data.value1 = val-1;
+    	}
+    }
 });
-var con = new Vue({
-    e1: '#conntion'
+var listContent = new Vue({
+	el: '#listContent',
+	data: {
+    	value1:0
+    }
+})
+var aff = new Vue({
+    el: '#affix'
 })
 
 var img_url = ["../img/1.jpg","../img/3_4.png","../img/6.jpg","../img/7.jpg","../img/3_4.png","../img/1.jpg","../img/6.jpg","../img/7.jpg","../img/6.jpg","../img/1.jpg"];
@@ -22,14 +33,12 @@ function show() {
     }else{
         var da = [];
         var firstHeight = image_val(da,1);
-        var dir = document.getElementById('conntion');
+        var dir = document.getElementById('tab1');
         var dbox = document.createElement('div');//第一行的div
         dbox.className = "box";
         dbox.id = "dbox";
         for(var x = 1;x<8; x++){
             if(x==5){
-                // var br = document.createElement("br");
-                // dbox.appendChild(br);
                 firstHeight = image_val(da,2);
             }
             var dr = document.createElement('div');
@@ -111,5 +120,5 @@ window.onresize = function(){
 var nub;
 $(document).click(function (e) { 
     var v_id = $(e.target).attr('id');
-    nub = v_id.replace(/[^0-9]/ig,"");
+//  nub = v_id.replace(/[^0-9]/ig,"");
 });

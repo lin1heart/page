@@ -3,6 +3,18 @@ html, body {
     width: 100%;
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
+.affix {
+	width:100%;
+	height:70px;
+	background-color:white;
+	border: solid #dddddd;
+	border-width: 0px 0px 1px 0px;
+}
+.login_button {
+	margin-top: 19px;
+	margin-right: 10px;
+	float: right;
+}
 #conntion {
     width: 100%;
     height: 100%;
