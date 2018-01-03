@@ -33,7 +33,7 @@ function show() {
     }else{
         var da = [];
         var firstHeight = image_val(da,1);
-        var dir = document.getElementById('tab1');
+        var dir = document.getElementById('tabFirst');
         var dbox = document.createElement('div');//第一行的div
         dbox.className = "box";
         dbox.id = "dbox";
@@ -51,22 +51,6 @@ function show() {
             dbox.appendChild(dr);
         }
         dir.append(dbox);
-        // var da = [];
-        // var doubleHeight = image_val(da,2);
-        // var dbox2 = document.createElement('div');//第一行的div
-        // dbox2.className = "box";
-        // dbox2.id = "dbox2";
-        // for(var x = 5;x<8; x++){
-        //     var dr = document.createElement('div');
-        //     dr.className = "img_div";
-        //     dr.style.height = doubleHeight+'px';
-        //     var img = document.createElement('img');
-        //     img.src = img_url[x];
-        //     img.id = "img" + x;
-        //     dr.appendChild(img);
-        //     dbox2.appendChild(dr);
-        // }
-        // dir.append(dbox2);
     }
 }
 var img_pro = [1366/768,162/270,1366/768,1366/768,162/270,1366/768,1366/768,1366/768,1366/768,1366/768,1366/768];
@@ -108,17 +92,15 @@ window.onresize = function(){
     show();
 }
 
-// window.onload = function(){
-//     var oUl = document.getElementById("ul1");
-//     var aLi = oUl.getElementsByTagName('li');
-//     for(var i=0;i<aLi.length;i++){
-//         aLi[i].onclick = function(){
-//             alert(123);
-//         }
-//     }
-// }
 var nub;
-$(document).click(function (e) { 
-    var v_id = $(e.target).attr('id');
-//  nub = v_id.replace(/[^0-9]/ig,"");
-});
+
+window.onload = function(){
+    document.onmouseover = function(e){
+        var target = e.target|| e.srcElement;
+        var p = /[0-9]/;
+        var b = p.test(target.id);
+        if(b){
+        	nub = target.id.replace(/[^0-9]/ig,"");
+        }
+    }
+}
