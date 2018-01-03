@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>演示Vue</title>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <link rel="stylesheet" href="new_file.css" />
+  </head>
+  <body>
+    <div id="container">
+      <aa-111>
+        Hello world!
+      </aa-111>
+    </div>
+  </body>
+
+  <script>
+    Vue.component('aa-111', {
+     
+         render: function (createElement) {
+			  return createElement('div',
+			    Array.apply(null, { length: 2 }).map(function () {
+			      return createElement('div', 
+				      Array.apply(null, { length: 4 }).map(function () {
+				      	
+				      return createElement('img', {
+				      	attrs: {
+				      		src: "3_4.png"},
+//					      	style:'box',
+				      	on: {
+				      		mouseenter: function(){
+				      			console.log(333);
+				      		}
+				      	}
+				      })
+				    })
+			     )
+			    })
+			  )
+			}
+//        render: function(h) {     
+//       return h('div',[
+////	     class: 'box',
+//      	
+//      
+//      	h('div',{
+//      		class: 'img_div',
+//      		on: {
+//		            mouseenter: function() {//mouseleave 离开
+//		            	console.log(333);
+//			            }
+//			        }
+//      	})
+//      ])
+//    },
+      
+    });
+    new Vue({
+      el: '#container'
+    });
+  </script>
+</html>
