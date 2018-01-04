@@ -27,11 +27,14 @@
 				      	
 				      return createElement('img', {
 				      	attrs: {
-				      		src: "3_4.png"},
-//					      	style:'box',
+				      		src: "img/3_4.png"
+				      		},
 				      	on: {
-				      		mouseenter: function(){
+				      		mouseenter:() =>{
 				      			console.log(333);
+				      		},
+				      		mouseleave:() =>{
+				      			console.log(222);
 				      		}
 				      	}
 				      })
@@ -62,3 +65,4 @@
     });
   </script>
 </html>
+https://cn.vuejs.org/v2/guide/render-function.html#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B

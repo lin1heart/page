@@ -9,6 +9,7 @@ img {
     flex-grow: 1;
     flex-shrink: 1;
     height:100%;
+    margin-left: 5px;
 }
 .img_div {
     margin-left:5px;
