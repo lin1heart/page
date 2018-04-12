@@ -18,8 +18,13 @@
 		        <label>目标</label><input type="text" id="name" />
 		        <label>内容</label><input type="text" id="nei" />
 		        <button id="sendName" onclick="sendName();">发送</button>
+		        <button id="version" onclick="ver();">version</button><br />
+		        <label>聊天室</label><input type="text" id="chatRoom" />
+		        <button id="chat" onclick="aaa();">连接聊天室</button>
+		        <button id="chat" onclick="bbb();">聊天室内容发送</button>
 		        <p id="response"></p>
 		        <p id="response1"></p>
+		        <p id="response2"></p>
 		    </div>
 		</div>
 		<script>
@@ -41,9 +46,9 @@
 		            setConnected(true);
 		            console.log('开始进行连接Connected: ' + frame);
 		            //4通过stompClient.subscribe（）订阅服务器的目标是'/topic/getResponse'发送过来的地址，与@SendTo中的地址对应。
-//		            stompClient.subscribe('/topic/getResponse', function(respnose){
-//		                showResponse(JSON.parse(respnose.body).responseMessage);
-//		            });
+		            stompClient.subscribe('/topic/getResponse', function(respnose){
+		                showResponse(JSON.parse(respnose.body).responseMessage);
+		            });
 		            //4通过stompClient.subscribe（）订阅服务器的目标是'/user/' + userId + '/msg'接收一对一的推送消息,其中userId由服务端传递过来,用于表示唯一的用户,通过此值将消息精确推送给一个用户
 		            stompClient.subscribe('/user/' + userId + '/msg', function(respnose){
 		                console.log(respnose);
@@ -70,6 +75,20 @@
 		        //通过stompClient.send（）向地址为"/welcome"的服务器地址发起请求，与@MessageMapping里的地址对应。因为我们配置了registry.setApplicationDestinationPrefixes(Constant.WEBSOCKETPATHPERFIX);所以需要增加前缀/ws-push/
 		        stompClient.send("/ws-push/welcome", {}, JSON.stringify({ 'name': name,'content':content }));
 		    }
+		    function ver(){
+		    	$.get("http://127.0.0.1:8080/user/version","",function(a,b,c){
+		    	})
+		    }
+		    function aaa(){
+		    	stompClient.subscribe('/topic/chatRoom', function(respnose){
+		                showResponse2(JSON.parse(respnose.body).responseMessage);
+		            });
+		    }
+		    function bbb(){
+		    	var content = $('#chatRoom').val();
+		    	stompClient.send("/ws-push/welcome1", {}, JSON.stringify({'content':content }));
+		    	
+		    }
 		
 		    function showResponse(message) {
 		        var response = $("#response");
@@ -77,6 +96,10 @@
 		    }
 		    function showResponse1(message) {
 		        var response = $("#response1");
+		        response.html(message);
+		    }
+		    function showResponse2(message) {
+		        var response = $("#response2");
 		        response.html(message);
 		    }
 		    
